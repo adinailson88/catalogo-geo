@@ -3,17 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Catálogo Geo — Bases de Dados e Ferramentas Geoespaciais</title>
   <meta name="description" content="Página de apresentação do Catálogo Geo, iniciativa de curadoria de bases públicas, geoportais, softwares e ferramentas para análises geoespaciais, ambientais, energéticas, climáticas, agrícolas e territoriais.">
   <meta name="keywords" content="Catálogo Geo, geoprocessamento, bases geoespaciais, dados geográficos, QGIS, GeoDa, MapBiomas, ANA, IBGE, INPE, BDQueimadas, ONS, GeoSampa, Google Earth Engine, Python, R, PostGIS">
   <meta name="author" content="Adinailson Guimarães">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://adinailson88.github.io/catalogo-geo/">
+
   <meta property="og:title" content="Catálogo Geo — Bases de Dados e Ferramentas Geoespaciais">
   <meta property="og:description" content="Página pública de apresentação e acesso ao catálogo interativo de bases e ferramentas geoespaciais.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://adinailson88.github.io/catalogo-geo/">
   <meta property="og:locale" content="pt_BR">
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -28,254 +31,522 @@
     }
   }
   </script>
+
   <style>
     :root {
-      --azul-escuro: #17324d;
-      --azul: #2563eb;
-      --azul-claro: #eef4ff;
-      --fundo: #f4f7fb;
-      --texto: #1f2937;
-      --suave: #5b6678;
-      --borda: #d9e2ec;
-      --card: #ffffff;
+      --cor-fundo: #f4f7fb;
+      --cor-card: #ffffff;
+      --cor-primaria: #17324d;
+      --cor-secundaria: #2563eb;
+      --cor-texto: #1f2937;
+      --cor-suave: #5b6678;
+      --cor-borda: #d9e2ec;
+      --cor-chip: #e8f1fb;
+      --cor-chip-texto: #174069;
+      --cor-sucesso-bg: #dcfce7;
+      --cor-sucesso: #166534;
+      --cor-alerta-bg: #fef3c7;
+      --cor-alerta: #92400e;
       --sombra: 0 8px 20px rgba(15, 23, 42, 0.06);
+      --sombra-hover: 0 14px 30px rgba(15, 23, 42, 0.14);
+      --raio: 16px;
     }
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--fundo);
-      color: var(--texto);
-      line-height: 1.6;
+      background: var(--cor-fundo);
+      color: var(--cor-texto);
     }
-    a { color: #1d4ed8; }
+
     .container {
-      max-width: 1080px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 42px 18px;
+      padding: 24px 16px 34px;
     }
-    .hero {
+
+    .topo {
       background: linear-gradient(135deg, #17324d, #1d4ed8);
-      color: #fff;
-      padding: 36px;
-      border-radius: 22px;
-      margin-bottom: 22px;
-      box-shadow: 0 12px 30px rgba(15,23,42,.14);
+      color: white;
+      padding: 26px;
+      border-radius: 18px;
+      margin-bottom: 18px;
+      box-shadow: var(--sombra);
     }
-    .hero .selo {
-      display: inline-block;
-      background: rgba(255,255,255,.14);
-      border: 1px solid rgba(255,255,255,.26);
-      border-radius: 999px;
-      padding: 6px 11px;
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 14px;
+
+    .topo h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 1.2;
     }
-    .hero h1 {
-      margin: 0 0 12px;
-      font-size: 36px;
-      line-height: 1.16;
-    }
-    .hero p {
+
+    .topo p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.55;
       color: #e5edf8;
-      font-size: 16px;
-      max-width: 880px;
-      margin-bottom: 0;
+      max-width: 920px;
     }
-    .acoes {
+
+    .topo-acoes {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .abas {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      margin-top: 20px;
+      margin-bottom: 14px;
     }
-    .btn {
-      display: inline-block;
-      background: var(--azul);
-      color: #fff;
-      padding: 12px 16px;
+
+    .aba-btn {
+      border: 1px solid #c7d7fe;
+      background: white;
+      color: var(--cor-primaria);
+      padding: 11px 16px;
       border-radius: 999px;
-      text-decoration: none;
+      cursor: pointer;
       font-weight: 700;
-      border: 1px solid transparent;
+      font-size: 14px;
     }
-    .btn-secundario {
-      background: var(--azul-claro);
-      color: #1d4ed8;
-      border-color: #c7d7fe;
+
+    .aba-btn.ativa {
+      background: var(--cor-primaria);
+      color: white;
+      border-color: var(--cor-primaria);
     }
-    .btn-branco {
-      background: #fff;
-      color: #17324d;
-      border-color: #fff;
-    }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--borda);
-      border-radius: 18px;
-      padding: 22px;
-      margin-bottom: 16px;
+
+    .painel {
+      background: white;
+      border: 1px solid var(--cor-borda);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 18px;
       box-shadow: var(--sombra);
     }
-    h2 {
-      color: var(--azul-escuro);
-      margin-top: 0;
-      margin-bottom: 10px;
+
+    .painel h2 {
+      margin: 0 0 10px;
+      color: var(--cor-primaria);
+      font-size: 21px;
       line-height: 1.25;
     }
+
+    .painel p {
+      margin: 0 0 10px;
+      color: var(--cor-texto);
+      font-size: 14.5px;
+      line-height: 1.58;
+    }
+
+    .painel p:last-child {
+      margin-bottom: 0;
+    }
+
+    .conteudo-aba {
+      display: none;
+    }
+
+    .conteudo-aba.ativa {
+      display: block;
+    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
+      gap: 12px;
     }
+
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
     }
-    ul { margin-bottom: 0; padding-left: 20px; }
-    .tags {
+
+    .card {
+      background: var(--cor-card);
+      border: 1px solid var(--cor-borda);
+      border-radius: var(--raio);
+      box-shadow: var(--sombra);
+      padding: 16px;
+      transition: box-shadow 0.22s ease, transform 0.22s ease, border-color 0.22s ease;
+    }
+
+    .card:hover {
+      border-color: #9bbcf9;
+      box-shadow: var(--sombra-hover);
+      transform: translateY(-1px);
+    }
+
+    .card h3 {
+      margin: 0 0 6px;
+      color: var(--cor-primaria);
+      font-size: 16px;
+      line-height: 1.3;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--cor-suave);
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+
+    .lista-limpa {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      color: var(--cor-suave);
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      background: var(--cor-chip);
+      color: var(--cor-chip-texto);
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .chip.ativo {
+      background: var(--cor-sucesso-bg);
+      color: var(--cor-sucesso);
+    }
+
+    .chip.verificar {
+      background: var(--cor-alerta-bg);
+      color: var(--cor-alerta);
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .btn-principal {
+      background: var(--cor-secundaria);
+      color: white;
+    }
+
+    .btn-secundario {
+      background: #eef4ff;
+      color: #1d4ed8;
+      border-color: #c7d7fe;
+    }
+
+    .btn-branco {
+      background: white;
+      color: var(--cor-primaria);
+      border-color: white;
+    }
+
+    .btn:hover {
+      filter: brightness(0.98);
+    }
+
+    .acoes {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 12px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid #edf2f7;
     }
-    .tag {
-      background: #e8f1fb;
-      color: #174069;
-      border-radius: 999px;
-      padding: 6px 10px;
+
+    .rodape {
+      margin-top: 24px;
+      background: #ffffff;
+      border: 1px solid var(--cor-borda);
+      border-radius: 16px;
+      padding: 16px 18px;
+      color: var(--cor-suave);
       font-size: 13px;
-      font-weight: 700;
-    }
-    .nota {
-      color: var(--suave);
-      font-size: 14px;
-      margin-top: 10px;
-    }
-    .passo {
-      border-left: 4px solid #2563eb;
-      padding-left: 12px;
-    }
-    footer {
-      margin-top: 28px;
-      font-size: 14px;
-      color: var(--suave);
+      line-height: 1.55;
+      box-shadow: var(--sombra);
       text-align: center;
     }
-    footer a { color: #1d4ed8; font-weight: 700; text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-    @media (max-width: 820px) {
-      .grid, .grid-3 { grid-template-columns: 1fr; }
-      .hero { padding: 24px; }
-      .hero h1 { font-size: 27px; }
+
+    .rodape strong {
+      color: var(--cor-primaria);
+    }
+
+    .rodape a {
+      color: #1d4ed8;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .rodape a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 960px) {
+      .grid,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 16px 10px 28px;
+      }
+
+      .topo {
+        padding: 20px;
+      }
+
+      .topo h1 {
+        font-size: 23px;
+      }
+
+      .aba-btn {
+        width: 100%;
+      }
+
+      .topo-acoes .btn,
+      .acoes .btn {
+        width: 100%;
+        text-align: center;
+      }
     }
   </style>
 </head>
+
 <body>
   <main class="container">
-    <section class="hero">
-      <span class="selo">Página pública de apresentação</span>
-      <h1>Catálogo Geo — Bases de Dados e Ferramentas Geoespaciais</h1>
+    <section class="topo">
+      <h1>Catálogo de Bases e Ferramentas Geoespaciais</h1>
       <p>
-        Curadoria técnica de bases públicas, geoportais, softwares, linguagens e plataformas para análises
-        geoespaciais, ambientais, energéticas, climáticas, agrícolas, territoriais e de infraestrutura.
+        Página de apresentação pública do Catálogo Geo, uma curadoria técnica de bases públicas,
+        geoportais, softwares, linguagens e plataformas para análises geoespaciais, ambientais,
+        energéticas, climáticas, agrícolas e territoriais.
       </p>
-      <div class="acoes">
+      <div class="topo-acoes">
         <a class="btn btn-branco" href="https://sites.google.com/cja.ufsb.edu.br/catalogogeo/cat%C3%A1logo-de-bases-geoespaciais" target="_blank" rel="noopener noreferrer">Acessar catálogo interativo</a>
         <a class="btn btn-secundario" href="https://docs.google.com/forms/d/e/1FAIpQLSfiGgnoi9hTOIKsRTazPOePZRxFMiuALlYvZt81KLER-qqO8Q/viewform?usp=sharing&ouid=107426236690777798959" target="_blank" rel="noopener noreferrer">Enviar contribuição</a>
       </div>
     </section>
 
-    <section class="card">
-      <h2>Finalidade</h2>
-      <p>
-        O Catálogo Geo foi criado para facilitar a localização, comparação e uso de fontes confiáveis em estudos espaciais,
-        diagnósticos territoriais, planejamento público, infraestrutura, energia, agricultura, recursos hídricos, meio ambiente
-        e gestão urbana.
-      </p>
-      <p>
-        Esta página no GitHub Pages funciona como apresentação pública, documentação resumida e ponto principal de divulgação.
-        O catálogo interativo permanece publicado no ambiente Google, onde os dados são atualizados a partir de planilha.
-      </p>
+    <section class="abas" aria-label="Menu de navegação da página">
+      <button type="button" class="aba-btn ativa" data-aba="apresentacao">Apresentação</button>
+      <button type="button" class="aba-btn" data-aba="bases">Bases e geoportais</button>
+      <button type="button" class="aba-btn" data-aba="softwares">Softwares e aplicativos</button>
+      <button type="button" class="aba-btn" data-aba="contribuir">Contribuir</button>
     </section>
 
-    <section class="grid">
-      <div class="card">
-        <h2>Bases e geoportais</h2>
-        <ul>
-          <li>MapBiomas</li>
-          <li>ANA / SNIRH</li>
-          <li>IBGE Geociências</li>
-          <li>INPE / BDQueimadas</li>
-          <li>ONS</li>
-          <li>GeoSampa</li>
-          <li>DataGeo / IDEA-SP</li>
-          <li>GEOBASES Espírito Santo</li>
-          <li>SIGSC Santa Catarina</li>
-        </ul>
+    <section id="apresentacao" class="conteudo-aba ativa">
+      <div class="painel">
+        <h2>Finalidade</h2>
+        <p>
+          O Catálogo Geo foi criado para facilitar a localização, comparação e uso de fontes confiáveis em estudos espaciais,
+          diagnósticos territoriais, planejamento público, infraestrutura, energia, agricultura, recursos hídricos,
+          meio ambiente e gestão urbana.
+        </p>
+        <p>
+          Esta página no GitHub Pages funciona como apresentação pública, documentação resumida e ponto principal de divulgação.
+          O catálogo interativo permanece no ambiente Google, onde os dados são atualizados por planilha e exibidos em interface própria.
+        </p>
       </div>
-      <div class="card">
-        <h2>Softwares e ferramentas</h2>
-        <ul>
-          <li>QGIS</li>
-          <li>GeoDa</li>
-          <li>R e RStudio / Posit</li>
-          <li>Python</li>
-          <li>Google Earth Engine</li>
-          <li>Google Colab</li>
-          <li>PostgreSQL / PostGIS</li>
-          <li>Jupyter Notebook</li>
-        </ul>
-      </div>
-    </section>
 
-    <section class="card">
-      <h2>Organização das informações</h2>
       <div class="grid-3">
-        <div class="passo">
-          <strong>1. Curadoria</strong><br>
-          seleção de bases, geoportais, ferramentas e fontes úteis para análise territorial.
-        </div>
-        <div class="passo">
-          <strong>2. Classificação</strong><br>
-          organização por tema, formato, software recomendado, abrangência e UF.
-        </div>
-        <div class="passo">
-          <strong>3. Consulta</strong><br>
-          acesso por lista compacta, filtros e informações resumidas ou detalhadas.
+        <article class="card">
+          <h3>1. Curadoria</h3>
+          <p>Seleção de bases, geoportais, ferramentas e fontes úteis para análise territorial e geoprocessamento aplicado.</p>
+        </article>
+        <article class="card">
+          <h3>2. Classificação</h3>
+          <p>Organização por tema, formato, software recomendado, abrangência territorial, UF e observações de uso.</p>
+        </article>
+        <article class="card">
+          <h3>3. Consulta</h3>
+          <p>Acesso por lista compacta, filtros, links de acesso, descrição, orientações e dados complementares.</p>
+        </article>
+      </div>
+
+      <div class="painel" style="margin-top: 14px;">
+        <h2>Abrangência territorial</h2>
+        <p>As fontes são classificadas por abrangência para facilitar a triagem técnica.</p>
+        <div class="chips">
+          <span class="chip ativo">Nacional</span>
+          <span class="chip ativo">Estadual</span>
+          <span class="chip ativo">Municipal</span>
+          <span class="chip ativo">Regional</span>
+          <span class="chip ativo">Global</span>
         </div>
       </div>
     </section>
 
-    <section class="card">
-      <h2>Abrangência territorial</h2>
-      <p>As fontes são classificadas por abrangência para facilitar a triagem técnica:</p>
-      <div class="tags">
-        <span class="tag">Nacional</span>
-        <span class="tag">Estadual</span>
-        <span class="tag">Municipal</span>
-        <span class="tag">Regional</span>
-        <span class="tag">Global</span>
+    <section id="bases" class="conteudo-aba">
+      <div class="painel">
+        <h2>Bases e geoportais</h2>
+        <p>
+          O catálogo reúne bases públicas e geoportais para consulta, download ou integração em análises espaciais.
+          A listagem abaixo é exemplificativa; a lista completa fica no catálogo interativo.
+        </p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Bases nacionais</h3>
+          <p>Fontes com cobertura nacional ou ampla aplicabilidade territorial.</p>
+          <ul class="lista-limpa">
+            <li>MapBiomas</li>
+            <li>ANA / SNIRH</li>
+            <li>IBGE Geociências</li>
+            <li>INPE / BDQueimadas</li>
+            <li>ONS</li>
+            <li>ANEEL e EPE</li>
+          </ul>
+          <div class="chips"><span class="chip">Nacional</span><span class="chip">Território</span><span class="chip">Ambiente</span><span class="chip">Energia</span></div>
+        </article>
+
+        <article class="card">
+          <h3>Geoportais estaduais e municipais</h3>
+          <p>Portais de dados espaciais organizados por governos estaduais ou municipais.</p>
+          <ul class="lista-limpa">
+            <li>GeoSampa</li>
+            <li>DataGeo / IDEA-SP</li>
+            <li>GEOBASES Espírito Santo</li>
+            <li>GeoPortal DF / IDE-DF</li>
+            <li>SIGSC Santa Catarina</li>
+          </ul>
+          <div class="chips"><span class="chip">Estadual</span><span class="chip">Municipal</span><span class="chip verificar">Verificar metadados</span></div>
+        </article>
+      </div>
+
+      <div class="painel" style="margin-top: 14px;">
+        <h2>Consulta completa</h2>
+        <p>Acesse o catálogo interativo para pesquisar por tema, formato, status, escala, software recomendado, abrangência e UF.</p>
+        <div class="acoes">
+          <a class="btn btn-principal" href="https://sites.google.com/cja.ufsb.edu.br/catalogogeo/cat%C3%A1logo-de-bases-geoespaciais" target="_blank" rel="noopener noreferrer">Abrir catálogo interativo</a>
+        </div>
       </div>
     </section>
 
-    <section class="card">
-      <h2>Contribuições</h2>
-      <p>
-        Sugestões, críticas, elogios, correções ou indicação de novas bases e ferramentas podem ser enviadas pelo formulário público
-        ou pelo e-mail <a href="mailto:adinailson88@gmail.com">adinailson88@gmail.com</a>.
-      </p>
-      <div class="acoes">
-        <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfiGgnoi9hTOIKsRTazPOePZRxFMiuALlYvZt81KLER-qqO8Q/viewform?usp=sharing&ouid=107426236690777798959" target="_blank" rel="noopener noreferrer">Enviar contribuição</a>
-        <a class="btn btn-secundario" href="https://sites.google.com/cja.ufsb.edu.br/catalogogeo/cat%C3%A1logo-de-bases-geoespaciais" target="_blank" rel="noopener noreferrer">Ver catálogo completo</a>
+    <section id="softwares" class="conteudo-aba">
+      <div class="painel">
+        <h2>Softwares e aplicativos</h2>
+        <p>
+          A aba de softwares organiza ferramentas, linguagens e plataformas usadas para tratamento, análise,
+          modelagem, visualização e publicação de dados geoespaciais.
+        </p>
       </div>
-      <p class="nota">A curadoria é incremental e pode ser ampliada com novas fontes nacionais, estaduais, municipais, regionais e globais.</p>
+
+      <div class="grid">
+        <article class="card">
+          <h3>SIG e análise espacial</h3>
+          <p>Ferramentas voltadas à visualização, edição, análise e estatística espacial.</p>
+          <ul class="lista-limpa">
+            <li>QGIS</li>
+            <li>GeoDa</li>
+            <li>PostgreSQL / PostGIS</li>
+          </ul>
+          <div class="chips"><span class="chip">SIG</span><span class="chip">Geoestatística</span><span class="chip">Banco espacial</span></div>
+        </article>
+
+        <article class="card">
+          <h3>Programação e computação analítica</h3>
+          <p>Ambientes para automação, ciência de dados, sensoriamento remoto e notebooks analíticos.</p>
+          <ul class="lista-limpa">
+            <li>R e RStudio / Posit</li>
+            <li>Python</li>
+            <li>Google Colab</li>
+            <li>Jupyter Notebook</li>
+            <li>Google Earth Engine</li>
+          </ul>
+          <div class="chips"><span class="chip">Ciência de dados</span><span class="chip">Sensoriamento remoto</span><span class="chip">Automação</span></div>
+        </article>
+      </div>
+
+      <div class="painel" style="margin-top: 14px;">
+        <h2>Consulta completa</h2>
+        <p>No catálogo interativo, cada ferramenta pode ser consultada com descrição, finalidade, usos principais, integração e links úteis.</p>
+        <div class="acoes">
+          <a class="btn btn-principal" href="https://sites.google.com/cja.ufsb.edu.br/catalogogeo/cat%C3%A1logo-de-bases-geoespaciais" target="_blank" rel="noopener noreferrer">Abrir catálogo interativo</a>
+        </div>
+      </div>
     </section>
 
-    <footer>
-      Desenvolvido por <strong>Adinailson Guimarães</strong>. Página de apresentação pública do Catálogo Geo.
+    <section id="contribuir" class="conteudo-aba">
+      <div class="painel">
+        <h2>Contribuições</h2>
+        <p>
+          Sugestões, críticas, elogios, correções ou indicação de novas bases e ferramentas podem ser enviadas pelo formulário público.
+          As contribuições ajudam a manter a curadoria atualizada e mais útil para estudos geoespaciais.
+        </p>
+        <div class="acoes">
+          <a class="btn btn-principal" href="https://docs.google.com/forms/d/e/1FAIpQLSfiGgnoi9hTOIKsRTazPOePZRxFMiuALlYvZt81KLER-qqO8Q/viewform?usp=sharing&ouid=107426236690777798959" target="_blank" rel="noopener noreferrer">Enviar contribuição</a>
+          <a class="btn btn-secundario" href="https://mail.google.com/mail/?view=cm&fs=1&to=adinailson88@gmail.com&su=Contribui%C3%A7%C3%A3o%20para%20o%20Cat%C3%A1logo%20Geo" target="_blank" rel="noopener noreferrer">Enviar e-mail</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <h3>O que pode ser enviado</h3>
+          <ul class="lista-limpa">
+            <li>nova base de dados;</li>
+            <li>novo geoportal;</li>
+            <li>software ou ferramenta útil;</li>
+            <li>correção de link ou descrição;</li>
+            <li>sugestão de classificação, tema ou UF.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Critério de inclusão</h3>
+          <p>
+            As fontes são avaliadas conforme utilidade técnica, disponibilidade pública, clareza de acesso,
+            possibilidade de uso em SIG ou análise de dados e pertinência para estudos territoriais.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="rodape">
+      <div>Desenvolvido por <strong>Adinailson Guimarães</strong>.</div>
+      <div>Página pública de apresentação do Catálogo Geo. Catálogo interativo mantido em ambiente Google.</div>
     </footer>
   </main>
+
+  <script>
+    const botoes = document.querySelectorAll('.aba-btn');
+    const abas = document.querySelectorAll('.conteudo-aba');
+
+    botoes.forEach(function (botao) {
+      botao.addEventListener('click', function () {
+        const alvo = botao.getAttribute('data-aba');
+
+        botoes.forEach(function (b) {
+          b.classList.toggle('ativa', b === botao);
+        });
+
+        abas.forEach(function (aba) {
+          aba.classList.toggle('ativa', aba.id === alvo);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
