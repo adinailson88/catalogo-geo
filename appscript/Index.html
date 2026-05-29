@@ -1,0 +1,39 @@
+<!--
+  Index.html
+
+  Arquivo de referencia da interface do Catalogo Geo publicada via Google Apps Script.
+
+  Importante:
+  - a versao operacional completa permanece no projeto Apps Script da planilha;
+  - este repositorio registra a arquitetura e os scripts usados;
+  - o HTML funcional depende de google.script.run e nao deve ser publicado diretamente no GitHub Pages.
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogo Geo</title>
+</head>
+<body>
+  <main>
+    <h1>Catalogo de Bases e Ferramentas Geoespaciais</h1>
+    <p>Este arquivo e uma referencia. A versao operacional completa deve permanecer no Apps Script vinculado a planilha.</p>
+  </main>
+
+  <script>
+    function carregarCatalogo() {
+      google.script.run
+        .withSuccessHandler(function (dados) {
+          console.log('Bases:', dados.bases);
+          console.log('Softwares:', dados.softwares);
+        })
+        .withFailureHandler(function (erro) {
+          console.error(erro);
+        })
+        .obterCatalogo();
+    }
+  </script>
+</body>
+</html>
