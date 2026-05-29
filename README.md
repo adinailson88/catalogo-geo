@@ -1,45 +1,57 @@
-# Catálogo Geo — Bases de Dados e Ferramentas para Análise Geoespacial
+# Catálogo Geo — Registro dos scripts do Apps Script
 
-O **Catálogo Geo** é uma iniciativa de curadoria técnica voltada à organização de bases de dados públicas, geoportais, softwares, linguagens e plataformas úteis para análises geoespaciais, ambientais, energéticas, climáticas, agrícolas e territoriais.
+Este repositório mantém o registro dos scripts utilizados no **Catálogo de Bases e Ferramentas Geoespaciais**, publicado em Google Sites e operado com Google Apps Script e Google Sheets.
 
-A página interativa do catálogo está disponível em:
+Site oficial do catálogo:
 
 https://sites.google.com/cja.ufsb.edu.br/catalogogeo/catálogo-de-bases-geoespaciais
 
-A página pública complementar pelo GitHub Pages será publicada em:
+Página GitHub Pages deste repositório:
 
 https://adinailson88.github.io/catalogo-geo/
 
-## Objetivo
+A página do GitHub Pages não será usada como página de divulgação própria. Ela funciona apenas como redirecionamento para o site oficial no Google Sites.
 
-Facilitar a localização, comparação e uso de fontes confiáveis para estudos espaciais, diagnósticos territoriais, planejamento público, infraestrutura, energia, agricultura, recursos hídricos, meio ambiente e gestão urbana.
+## Finalidade do repositório
 
-## Conteúdo do catálogo
+Este repositório serve para registrar, versionar e documentar os scripts usados no projeto, especialmente:
 
-O catálogo inclui bases e ferramentas como MapBiomas, ANA/SNIRH, IBGE Geociências, INPE/BDQueimadas, ONS, GeoSampa, DataGeo/IDEA-SP, GEOBASES Espírito Santo, SIGSC Santa Catarina, QGIS, GeoDa, R, RStudio/Posit, Python, Google Earth Engine, Google Colab, PostGIS e Jupyter Notebook.
+- HTML do catálogo publicado via Apps Script;
+- funções do Apps Script para leitura da planilha;
+- funções de menu no Google Sheets;
+- scripts auxiliares de imagens/logos;
+- scripts auxiliares de formulário de contribuições;
+- documentação técnica do funcionamento.
 
-## Abrangência
+## Arquitetura adotada
 
-As fontes são organizadas por abrangência:
+```text
+Google Sheets
+├── BASES
+├── SOFTWARES
+├── IMAGENS
+└── CONFIG_SITE
 
-- Nacional;
-- Estadual;
-- Municipal;
-- Regional;
-- Global.
+Google Apps Script
+├── Code.gs
+├── Menu.gs
+├── Imagens.gs
+├── Formulario.gs
+└── Index.html
 
-Também há indicação de UF quando aplicável.
+Google Sites
+└── Página oficial de divulgação e acesso ao catálogo
 
-## Contribuições
+GitHub
+└── Registro e versionamento dos scripts utilizados
+```
 
-Formulário público:
+## Observação técnica
 
-https://docs.google.com/forms/d/e/1FAIpQLSfiGgnoi9hTOIKsRTazPOePZRxFMiuALlYvZt81KLER-qqO8Q/viewform?usp=sharing&ouid=107426236690777798959
-
-E-mail:
-
-adinailson88@gmail.com
+O HTML funcional do catálogo depende de `google.script.run` para chamar funções do Apps Script e carregar os dados da planilha. Por isso, ele deve ser executado no ambiente do Google Apps Script, e não diretamente como página estática do GitHub Pages.
 
 ## Responsável
 
 Desenvolvido e mantido por **Adinailson Guimarães**.
+
+Contato: adinailson88@gmail.com
