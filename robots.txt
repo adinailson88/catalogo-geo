@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://adinailson88.github.io/catalogo-geo/sitemap.xml
